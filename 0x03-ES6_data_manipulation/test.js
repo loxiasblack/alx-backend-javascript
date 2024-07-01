@@ -1,10 +1,12 @@
 #!/usr/bin/node
 
-const map1 = new Map();
-map1.set('a', 1);
-map1.set('b', 2);
-map1.set('c', 3);
-map1.set('d', 4);
+const array = [ 1, 2, 2, 3, 3 ]
+function sumOfArray(sum, num) {
+    return sum + num;
+}
 
+function mygeeks(item) {
+    console.log(array.reduce(sumOfArray));
+}
 
-console.log(map1);
+mygeeks();
