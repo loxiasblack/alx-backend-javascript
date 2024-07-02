@@ -1,10 +1,12 @@
 #!/usr/bin/node
 
-const buffer = new ArrayBuffer(10)
+const array = [1, 2, 3, 4, 5];
+const newSet = new Set(array);
+const elementTocheck = [2, 3, 7, 100];
 
-const view  = new Uint8Array(buffer).
+const checkResults = elementTocheck.map(element => newSet.has(element));
+const allElement = checkResults.every(result => result);
 
-console.log(view.buffer)
-
+console.log(allElement)
 
 
