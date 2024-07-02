@@ -1,12 +1,17 @@
 #!/usr/bin/node
 
-const array = [1, 2, 3, 4, 5];
-const newSet = new Set(array);
-const elementTocheck = [2, 3, 7, 100];
-
-const checkResults = elementTocheck.map(element => newSet.has(element));
-const allElement = checkResults.every(result => result);
-
-console.log(allElement)
-
-
+function extractAndJoin(set, searchString) {
+    const result = Array.from(set)
+      .filter(element => element.startsWith(searchString))  // Filter elements that start with searchString
+      .map(element => element.substring(searchString.length))  // Extract the part after searchString
+      .join('-');  // Join the parts with a dash
+  
+    return result;
+  }
+  
+  // Example usage:
+  const set = new Set(['apple', 'apricot', 'apex', 'avocado']);
+  const searchString = 'ap';
+  
+  const result = extractAndJoin(set, searchString);
+  console.log(result); // Output: "ple-ricot-ex-ocad
