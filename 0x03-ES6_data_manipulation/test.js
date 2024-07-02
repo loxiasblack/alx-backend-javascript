@@ -1,12 +1,10 @@
 #!/usr/bin/node
 
-const array = [ 1, 2, 2, 3, 3 ]
-function sumOfArray(sum, num) {
-    return sum + num;
-}
+const buffer = new ArrayBuffer(10)
 
-function mygeeks(item) {
-    console.log(array.reduce(sumOfArray));
-}
+const view  = new Uint8Array(buffer).
 
-mygeeks();
+console.log(view.buffer)
+
+
+
