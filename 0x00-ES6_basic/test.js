@@ -1,11 +1,8 @@
 #!/usr/bin/node
 
-function doSomething() {
-    var bar = 10;
-    var bar = 111;
-    console.log(bar); // 111\
-    var bar;
-    console.log(bar);
-  }
+import taskBlock from './1-block-scoped.js';
 
-doSomething();
+test('returns the right values', () => {
+  expect(taskBlock(true)).toEqual([false, true]);
+  expect(taskBlock(false)).toEqual([false, true]);
+});
