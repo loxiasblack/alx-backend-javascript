@@ -1,9 +1,11 @@
 #!/usr/bin/node
 
 function doSomething() {
-    console.log(bar); // undefined
+    var bar = 10;
     var bar = 111;
-    console.log(bar); // 111
+    console.log(bar); // 111\
+    var bar;
+    console.log(bar);
   }
 
 doSomething();
