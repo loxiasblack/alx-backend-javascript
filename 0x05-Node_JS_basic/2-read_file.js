@@ -1,35 +1,41 @@
 const fs = require('fs');
-const { parse } = require('csv-parse');
 
 function countStudents(path) {
-  const data = [];
-  const csField = [];
-  const sweField = [];
+  try {
+    // Read the file content synchronously
+    const data = fs.readFileSync(path, 'utf8');
+    
+    // Split the content into lines and remove any empty lines
+    const lines = data.trim().split('\n').filter((line) => line);
 
-  // Create a read stream with proper error handling
-  const stream = fs.createReadStream(path)
-    .pipe(parse({ delimiter: ',', from_line: 2 }));
+    if (lines.length === 0) {
+      throw new Error('Cannot load the database');
+    }
 
-  stream.on('error', () => {
-    throw new Error('Cannot load the database');
-  });
+    // Extract header (first line) and process student records
+    const header = lines.shift();
+    const students = lines.map((line) => line.split(','));
 
-  stream.on('data', (row) => {
-    data.push(row);
-  });
+    const csStudents = [];
+    const sweStudents = [];
 
-  stream.on('end', () => {
-    data.forEach((element) => {
-      if (element[3] === 'CS') {
-        csField.push(` ${element[0]}`);
-      } else {
-        sweField.push(` ${element[0]}`);
+    students.forEach((student) => {
+      const [firstname, , , field] = student;
+      if (field === 'CS') {
+        csStudents.push(firstname);
+      } else if (field === 'SWE') {
+        sweStudents.push(firstname);
       }
     });
-    console.log(`Number of students: ${data.length}`);
-    console.log(`Number of students in CS: ${csField.length}. List:${csField}`);
-    console.log(`Number of students in SWE: ${sweField.length}. List:${sweField}`);
-  });
+
+    // Log the results
+    console.log(`Number of students: ${students.length}`);
+    console.log(`Number of students in CS: ${csStudents.length}. List: ${csStudents.join(', ')}`);
+    console.log(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}`);
+
+  } catch (err) {
+    throw new Error('Cannot load the database');
+  }
 }
 
 module.exports = countStudents;
