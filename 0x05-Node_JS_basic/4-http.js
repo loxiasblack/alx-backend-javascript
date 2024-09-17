@@ -10,3 +10,5 @@ app.on('request', (req, res) => {
 }).listen(port, host, () => {
   console.log('Serving runing ...');
 });
+
+module.exports = app;
