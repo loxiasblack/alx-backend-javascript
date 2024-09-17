@@ -3,10 +3,10 @@ const http = require('http');
 const port = 1245;
 const host = 'localhost';
 
-const app = http.createServer((req, res) => {
-  res.end('Hello Holberton School!');
-});
+const app = http.createServer();
 
-app.listen(port, host, () => {
-  console.log(`Server running at http://${host}:${port}/`);
+app.on('request', (req, res) => {
+  res.end('Hello Holberton School!');
+}).listen(port, host, () => {
+  console.log('Serving runing ...');
 });
