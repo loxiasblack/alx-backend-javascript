@@ -6,5 +6,6 @@ request.get(url, (error, response, body) => {
     if (error) {
         console.error(`${error}: access denied`)
     }
-    console.log(JSON.parse(body))
+    const Cheese = JSON.parse(body)
+    console.log(`${Cheese}`)
 })
