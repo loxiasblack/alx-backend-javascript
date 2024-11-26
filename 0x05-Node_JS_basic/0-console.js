@@ -1,5 +1,4 @@
-const displayMessage = (arg) => {
-  console.log(`${arg}`);
+const displayMessage = (message) => {
+  console.log(message);
 };
-
 module.exports = displayMessage;
